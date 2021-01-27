@@ -5,4 +5,5 @@ from orders.models.task_process import TaskProcess
 class TaskProcessSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskProcess
-        fields = '__all__'
+        fields = ['pk','quantity','total_min','init_task','finish_task', 'process']
+        read_only_fields = ['total_min', 'init_task', 'pk']

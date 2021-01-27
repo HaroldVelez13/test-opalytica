@@ -1,3 +1,7 @@
+import App from 'next/app';
+import {Provider} from 'react-redux';
+import {createWrapper} from 'next-redux-wrapper';
+import store from '../store/store';
 import "../styles/globals.css";
 import "../styles/bootstrap.min.css";
 import NavBar from "../components/atoms/NavBar";
@@ -7,15 +11,24 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <div style={{backgroundColor:'#eef3f5'}}>
-      <NavBar />
-      <Container fluid>
-        <Component {...pageProps} />
-      </Container>
-    </div>
-  );
+
+class MyApp extends App {
+  render(){
+    const { Component, pageProps } = this.props;
+    return (
+      <Provider store={store}>
+      <div style={{backgroundColor:'#eef3f5'}}>
+        <NavBar />
+        <Container fluid>
+          <Component {...pageProps} />
+        </Container>
+      </div>
+      </Provider>
+    );
+  }
 }
 
-export default MyApp;
+const makeStore = () => store;
+const wrapper = createWrapper(makeStore)
+
+export default wrapper.withRedux(MyApp);

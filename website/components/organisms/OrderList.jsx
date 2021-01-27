@@ -10,7 +10,7 @@ export default function OrderList({ orders }) {
         <OrderListCreate />
 
         </Col>
-      {orders.map((order) => (
+      {orders && orders.map((order) => (
         <Col key={order.pk} sm='12' md='6' lg='4' className='my-2'>
             <a href={`/orders/${order.pk}`} className="link" >
             <OrderListItem order={order}/>

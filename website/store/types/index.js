@@ -1,0 +1,1 @@
+export const GET_ORDERS = '[ORDERS] GET_ORDERS'; 

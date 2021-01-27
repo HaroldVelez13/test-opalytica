@@ -6,7 +6,7 @@ services:
     build: ./opalytica
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./opalytica:/src/backend/
+      - ./opalytica:/src/backend
     ports:
       - 8000:8000
 
@@ -14,7 +14,7 @@ services:
     build: ./website
     command: npm run dev
     volumes:
-      - ./website:/src/website/
+      - ./website:/src/website
     ports:
       - 3000:3000
     depends_on:
